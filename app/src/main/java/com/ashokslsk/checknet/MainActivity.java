@@ -3,6 +3,7 @@ package com.ashokslsk.checknet;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.ashokslsk.checknetwork.NetworkStateReceiver;
 
@@ -28,10 +29,12 @@ public class MainActivity extends AppCompatActivity implements NetworkStateRecei
     @Override
     public void networkAvailable() {
 
+        Toast.makeText(MainActivity.this, "Network Available", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void networkUnavailable() {
-
+        Toast.makeText(MainActivity.this, "Network unavailable", Toast.LENGTH_SHORT).show();
     }
 }
