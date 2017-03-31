@@ -1,10 +1,13 @@
 # CheckNetwork
 Small foot print library for checking the network status continuously. 
 
-#Installation
-```gradl
+![Library screen](https://github.com/ashokslsk/CheckNetwork/blob/master/screen/Screen1.png)
 
-e
+# Installation
+
+```gradle
+
+
  
  //Add it in your root build.gradle at the end of repositories:
 
@@ -18,6 +21,42 @@ allprojects {
 dependencies {
 	        compile 'com.github.ashokslsk:CheckNetwork:41f1a12f20'
 	}
+
+```
+
+# Usage 
+```Java
+public class YourActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
+	
+	//Declare NetworkStateReceiver in global scope
+	private NetworkStateReceiver networkStateReceiver;
+	
+	 @Override
+         protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_splash_screen);
+
+	 //Network register
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+	
+   }
+   
+// Implemented interfaces to handle the network status
+
+    @Override
+    public void networkAvailable() {
+        Toast.makeText(MainActivity.this, "Network Available", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void networkUnavailable() {
+        Toast.makeText(MainActivity.this, "Network unavailable", Toast.LENGTH_SHORT).show();
+    }
+
+}
 
 ```
 
